@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ title }} </title>
+    <style>
+        main {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+        }
+        .form-group {
+                font-size: 18px;
+        }
+        .form-group input {
+                border: 1px solid;
+                border-radius: 20px;
+                font-weight: normal;
+                font-size: 20px;
+                text-align: center;
+                margin: 10px 0 10px 0;
+                height: 100%;
+                padding: 3px;
+        }
+        .form-group Textarea{
+                border: 1px solid;
+                border-radius: 20px;
+                font-weight: normal;
+                font-size: 20px;
+                text-align: center;
+                margin: 10px 0 10px 0;
+                height: 100%;
+                padding: 3px;
+        }
+    </style>
+</head>
+<body style="background: #f0f4f9;">
+    <main>
+        <div style="display: grid; grid-template-rows: auto; grid-template-columns: 1fr;
+                    border-radius: 40px; background: #ffffff; padding: 25px;">
+
+<!--          ЗАГОЛОВОК-->
+            <div style="text-align: center; margin: 10px 50px 0 50px;">
+                <a href="{{ href }}" style="color: #000000; text-decoration: none; font-style: italic;">
+                    <h1 style="margin: 0;"> АндреевV </h1>
+                </a>
+            </div>
+
+<!--          ПОД заголовок-->
+            <div style="text-align: center; margin: 10px 0 50px 0;">
+                {% if 'error' in info %}
+                    <p style="font-size: 20px; margin: 0; background: #F08080; border-radius: 5px;">
+                        {{ info.error }}
+                    </p>
+                {% else %}
+                    <p style="font-size: 20px; margin: 0;"> {{ title_command }} </p>
+                {% endif %}
+            </div>
+
+<!--          ФОРМА-->
+            <form method="POST">
+
+
+                {% block form %}
+                    <div>
+                        <label for="username"><p class="form-group"> Введите логин </p></label>
+                        <input class="form-group" id="username" name="username"  />
+
+                        <label for="password"><p class="form-group"> Введите пароль </p></label>
+                        <input class="form-group" type="password" id="password" name="password"  />
+                    </div>
+                {% endblock %}
+
+                {% block button %}
+<!--            кнопка входа-->
+                    <button type="submit"
+                            style="border-radius: 40px; background: #404040; color: #ffffff; border: 1px solid;
+                                   cursor:pointer; width: 100%; margin: 50px 0 5px 0;
+                    ">
+                        <p style="margin: 10;"> Войти </p>
+                    </button>
+
+<!--            кнопка регистрации-->
+                    <a href="registration/" style="margin: 5px 0 10px 0">
+                        <button type="button"
+                                style="border-radius: 40px; background: #ffffff; border: 1px solid;
+                                       cursor:pointer; width: 100%;
+                        ">
+                            <p style="margin: 10;"> Зарегистрироваться </p>
+                        </button>
+                    </a>
+                {% endblock %}
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "login.html" %}
+
+{% block form %}
+                    <div>
+                        <label for="title"><p class="form-group"> Введите заголовок </p></label>
+                        <input class="form-group" type="text" id="title" name="title"  />
+
+                        <label for="description"><p class="form-group"> Напишите пост </p></label>
+                        <textarea class="form-group" id="description" name="description">
+                        </textarea>
+                    </div>
+{% endblock %}
+
+{% block button %}
+    <button type="submit"
+            style="border-radius: 40px; background: #404040; color: #ffffff; border: 1px solid;
+                   cursor:pointer; width: 100%; margin: 29px 0 0 0;
+    ">
+        <p style="margin: 10;"> Создать </p>
+    </button>
+{% endblock %}

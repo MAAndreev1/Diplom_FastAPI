@@ -1,0 +1,23 @@
+{% extends "login.html" %}
+
+{% block form %}
+                    <div>
+                        <label for="username"><p class="form-group"> Введите логин </p></label>
+                        <input class="form-group" id="username" name="username"  />
+
+                        <label for="password"><p class="form-group"> Введите пароль </p></label>
+                        <input class="form-group" type="password" id="password" name="password"  />
+
+                        <label for="repeat_password"><p class="form-group"> Повторите пароль </p></label>
+                        <input class="form-group" type="password" id="repeat_password" name="repeat_password"  />
+                    </div>
+{% endblock %}
+
+{% block button %}
+    <button type="submit"
+            style="border-radius: 40px; background: #404040; color: #ffffff; border: 1px solid;
+                   cursor:pointer; width: 100%; margin: 29px 0 0 0;
+    ">
+        <p style="margin: 10;"> Зарегистрироваться </p>
+    </button>
+{% endblock %}

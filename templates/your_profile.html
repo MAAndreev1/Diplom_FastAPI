@@ -1,0 +1,59 @@
+{% extends "main_page.html" %}
+
+{% block left_col %}
+   <div style="position: sticky; top: 90px; margin: 30px;">
+        <a href="create_post/">
+            <button class="butt" style="background: #CCFFCC; cursor:pointer;"> Создать пост </button>
+        </a>
+    </div>
+{% endblock %}
+
+{% block main %}
+            <h1> Ваши посты:</h1>
+
+            {% for i in post_list %}
+                <form method="POST">
+
+                    <div style="display: grid; grid-template-rows: auto; grid-template-columns: auto;
+                         border-radius: 40px; background: #ffffff; margin: 30px;">
+<!--                Блок заголовка-->
+                        <div>
+                            <h1> {{ i.title }} </h1>
+                        </div>
+
+<!--                Блок содержания-->
+                        <div>
+                            <p> {{ i.description }} </p>
+                        </div>
+
+<!--                Блок подвала информации-->
+                        <div style="display: grid; grid-template-rows: auto; grid-template-columns: 25% 50% 25%;">
+                    <!--Пустой блок-->
+                            <div>
+
+                            </div>
+                    <!--Блок даты создания-->
+                            <div>
+                                <p style="font-weight: bold;"> Дата создания: </p>
+                                <p> {{ i.date_of_creation }} </p>
+                            </div>
+                    <!--Блок кнопки удаления поста-->
+                            <div>
+                                <button style="position: relative; top: 40%; background: #FFCCCC; cursor:pointer;"
+                                        class="butt" type="submit" name="delete" value="{{ i.id }}">
+                                    <p style="margin: 0;"> Удалить </p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% endfor %}
+{% endblock %}
+
+{% block right_col %}
+    <div style="position: sticky; top: 90px; margin: 30px;">
+        <a href="/">
+            <button class="butt" style="background: #FFCCCC; cursor:pointer;"> Выйти </button>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ title }} </title>
+    <style>
+        html {
+                height: 100%;
+        }
+        body {
+                margin: 0;
+                min-height: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                background: #f0f4f9;
+        }
+        header {
+                position: sticky;
+                left: 0; right: 0; top: -25px;
+                padding: 25px 0 0 0;
+                color: #000000;
+        }
+        header h1 {
+                margin: 0;
+        }
+        footer {
+                padding: 10px;
+                background: #606060;
+                color: #E0E0E0 ;
+        }
+        .butt {
+                border: 1px solid;
+                border-radius: 20px;
+                font-weight: normal;
+                font-size: 20px;
+                text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<header>
+
+    <div style="display: grid; grid-template-rows: 1fr; grid-template-columns: 25% auto 25%;">
+        <div style="text-align: center; border-radius: 40px; background: #ffffff; margin: 10% 10% 10px 10%;">
+            <a href="{{ href_main }}" style="color: #000000; text-decoration: none">
+                <h1 style="font-style: italic;"> АндреевV </h1>
+            </a>
+        </div>
+        <div>
+
+        </div>
+        <div style="text-align: center; border-radius: 40px; background: #ffffff; margin: 10% 10% 10px 10%;">
+            <a href="{{ href_prof }}" style="color: #000000; text-decoration: none">
+                <h1 style="font-style: italic;"> {{ user }} </h1>
+            </a>
+        </div>
+    </div>
+
+</header>
+
+
+
+
+<main>
+    <div style="display: grid; grid-template-rows: 1fr; grid-template-columns: 25% auto 25%; text-align: center;">
+
+
+        <div>
+            {% block left_col %}
+            {% endblock %}
+        </div>
+
+        <div>
+            {% block main %}
+                <h1> Лента Постов: </h1>
+
+                {% for i in post_list %}
+                <div style="display: grid; grid-template-rows: auto; grid-template-columns: auto;
+                     border-radius: 40px; background: #ffffff; margin: 30px;">
+<!--                Блок заголовка-->
+                    <div>
+                        <h1> {{ i.title }} </h1>
+                    </div>
+
+<!--                Блок содержания-->
+                    <div style="margin: 30px;">
+                        <p> {{ i.description }} </p>
+                    </div>
+
+<!--                Блок подвала информации-->
+                    <div style="display: grid; grid-template-rows: auto; grid-template-columns: 50% 50%;">
+                        <div><p style="font-weight: bold;"> Дата создания: </p><p> {{ i.date_of_creation }} </p></div>
+                        <div><p style="font-weight: bold;"> Автор:         </p><p> {{ i.users.username }}   </p></div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endblock %}
+        </div>
+
+        <div>
+            {% block right_col %}
+            {% endblock %}
+        </div>
+
+
+    </div>
+</main>
+
+
+
+
+<footer>
+    <div>
+        <p> Работу выполнил Андреев Михаил Александрович в рамках дипломной работы UrbanUniversity </p>
+    </div>
+</footer>
+
+
+
+</body>
+</html>
