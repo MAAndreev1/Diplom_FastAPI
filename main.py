@@ -29,15 +29,24 @@ app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
 
 @app.get("/")
 async def login_get(request: Request) -> HTMLResponse:
+    """
+        Данная функция обрабатывает запросы для страницы авторизации.
+        Она обрабатывает GET запрос.
+        GET - возвращает шаблон страницы авторизации.
+    """
     return templates.TemplateResponse('login.html',  {'request': request,
                                                       'title': 'Авторизация',
                                                       'title_command': 'Войдите в ваш профиль!',
                                                       'href': '#',})
 
 @app.post("/")
-def login_post(request: Request, db: Annotated[Session, Depends(get_db)],
-                                                                             username = Form(),
-                                                                             password=Form()):
+def login_post(request: Request, db: Annotated[Session, Depends(get_db)], username = Form(),
+                                                                          password=Form()):
+    """
+        Данная функция обрабатывает запросы для страницы авторизации.
+        Она обрабатывает POST запрос.
+        POST - проверяет отправленные на авторизацию данные пользователя с базой данных.
+    """
     user = db.scalar(select(Users).where(Users.username == username))
     info = {}
     if user is not None:
@@ -56,6 +65,11 @@ def login_post(request: Request, db: Annotated[Session, Depends(get_db)],
 
 @app.get("/registration")
 async def registration_get(request: Request) -> HTMLResponse:
+    """
+        Данная функция обрабатывает запросы для страницы регистрации.
+        Она обрабатывает GET запрос.
+        GET - возвращает шаблон страницы регистрации.
+    """
     return templates.TemplateResponse('registration.html',  {'request': request,
                                                              'title': 'Регистрация',
                                                              'title_command': 'Заполните форму!',
@@ -65,7 +79,11 @@ async def registration_get(request: Request) -> HTMLResponse:
 async def registration_post(request: Request, db: Annotated[Session, Depends(get_db)], username = Form(),
                                                                                        password=Form(),
                                                                                        repeat_password=Form()):
-
+    """
+        Данная функция обрабатывает запросы для страницы регистрации.
+        Она обрабатывает POST запрос.
+        POST - проверяет отправленные на регистрацию данные пользователя на корректность.
+    """
     info = {}
     if username=='' or password=='' or repeat_password=='':
         info.update({'error': 'Заполните все поля!'})
@@ -102,7 +120,11 @@ async def registration_post(request: Request, db: Annotated[Session, Depends(get
 
 @app.get("/main_page")
 async def main_page(request: Request, db: Annotated[Session, Depends(get_db)]) -> HTMLResponse:
-
+    """
+        Данная функция обрабатывает запросы для главной страницы.
+        Она обрабатывает GET запрос.
+        GET - возвращает шаблон главной страницы.
+    """
     user = request.session.get("username")
 
     post_list = []
@@ -122,7 +144,12 @@ async def main_page(request: Request, db: Annotated[Session, Depends(get_db)]) -
 
 @app.get("/your_profile")
 async def profile_get(request: Request, db: Annotated[Session, Depends(get_db)]) -> HTMLResponse:
+    """
+        Данная функция обрабатывает запросы для страницы профиля.
+        Она обрабатывает GET запрос.
+        GET - возвращает шаблон страницы профиля.
 
+    """
     user = request.session.get("username")
     user_id = request.session.get("user_id")
 
@@ -141,7 +168,11 @@ async def profile_get(request: Request, db: Annotated[Session, Depends(get_db)])
 
 @app.post("/your_profile")
 async def profile_get(request: Request, db: Annotated[Session, Depends(get_db)]) -> HTMLResponse:
-
+    """
+        Данная функция обрабатывает запросы для страницы профиля.
+        Она обрабатывает POST запрос.
+        POST - используется для удаления постов (получает id поста из POST запроса).
+    """
     user = request.session.get("username")
     user_id = request.session.get("user_id")
 
@@ -168,7 +199,11 @@ async def profile_get(request: Request, db: Annotated[Session, Depends(get_db)])
 
 @app.get("/create_post")
 async def create_post(request: Request) -> HTMLResponse:
-
+    """
+        Данная функция обрабатывает запросы для страницы создания постов.
+        Она обрабатывает GET запрос.
+        GET - возвращает шаблон страницы создания постов.
+    """
     return templates.TemplateResponse('create_post.html',  {'request': request,
                                                              'title': 'Создание поста',
                                                              'title_command': 'Заполните форму!',
@@ -177,6 +212,11 @@ async def create_post(request: Request) -> HTMLResponse:
 @app.post("/create_post")
 async def create_post(request: Request, db: Annotated[Session, Depends(get_db)], title = Form(),
                                                                                  description=Form(),):
+    """
+        Данная функция обрабатывает запросы для страницы создания постов.
+        Она обрабатывает POST запрос.
+        POST - использует отправленные данные для создания постов.
+    """
     user_id = request.session.get("user_id")
 
     if title=='' or description=='':
