@@ -25,7 +25,7 @@
 * typing_extensions==4.12.2
 * uvicorn==0.32.0
   
-
+![image](https://github.com/user-attachments/assets/c6a61b82-8953-4b1b-834f-c880d1101754)
 
 ## Возможности:
 
@@ -40,13 +40,12 @@
 
    * Хранение пользовательской информации в базе данных.
 
+   ![image](https://github.com/user-attachments/assets/78bd15b3-9577-4a24-b16a-e228ad8a7f67)
 
-
-   
 ### 2. Посты:
    * Хранение постов в базе данных;
   
-
+   ![image](https://github.com/user-attachments/assets/ef5b54c6-9b5e-4376-9d02-ec026f35832c)
 
    * Связь пользователя с постом (один к многим).
 ### 3. Стена:
